@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Junecan&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Junecan&#39;s blog">
+  <title>TCP协议 与 UDP协议 | Junecan&#39;s blog</title>
+  <meta name="keywords" content=" TCP , UDP ">
+  <meta name="description" content="TCP协议 与 UDP协议 | Junecan&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
 <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -493,18 +493,68 @@
 
     </div>
     <div class="hide-list">
-        <div class="semicircle" data-title="切换全屏 快捷键 s">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
             <div class="brackets first"><</div>
             <div class="brackets">&gt;</div>
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-TCP协议与UDP协议区别" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%9D%A5%E6%BA%90-%E5%8F%B6%E8%90%BD%E9%98%81"><span class="toc-text">模板来源-叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Junecan"><span class="toc-text">Junecan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">TCP协议 与 UDP协议</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="嵌入式">嵌入式</a> > 
+            
+            <a  data-rel="嵌入式&lt;---&gt;通信协议">通信协议</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">TCP</a>
+            
+            <a class="color4">UDP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-10-22 03:42:31'>2019-03-23 15:13</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">TCP协议与UDP协议的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8C%BA%E5%88%AB%E5%AF%B9%E6%AF%94"><span class="toc-text">2. 区别对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">3. 适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-text">4. 总结</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -517,36 +567,108 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="模板来源-叶落阁"><a href="#模板来源-叶落阁" class="headerlink" title="模板来源-叶落阁"></a>模板来源-叶落阁</h2><h2 id="Junecan"><a href="#Junecan" class="headerlink" title="Junecan"></a>Junecan</h2><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TCP协议与UDP协议的区别"><a href="#TCP协议与UDP协议的区别" class="headerlink" title="TCP协议与UDP协议的区别"></a>TCP协议与UDP协议的区别</h1><p>在计算机网络通信中，<strong>TCP</strong>（Transmission Control Protocol，传输控制协议）和<strong>UDP</strong>（User Datagram Protocol，用户数据报协议）是两种常见的传输层协议。它们在许多方面有明显的区别，适用于不同的应用场景。本文将详细介绍TCP和UDP的主要区别。</p>
+<h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><ul>
+<li><strong>TCP（传输控制协议）</strong>：TCP是面向连接的协议，在发送数据前需要建立连接，提供可靠的数据传输。它通过一系列的机制保证数据能够完整、有序地到达目的地。</li>
+<li><strong>UDP（用户数据报协议）</strong>：UDP是无连接的协议，不保证数据的可靠传输，发送数据时不需要建立连接，因此它的传输速度更快，但也更不可靠。</li>
 </ul>
+<h2 id="2-区别对比"><a href="#2-区别对比" class="headerlink" title="2. 区别对比"></a>2. 区别对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TCP（传输控制协议）</th>
+<th>UDP（用户数据报协议）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>连接性</strong></td>
+<td>面向连接，需要建立连接（使用三次握手）。</td>
+<td>无连接，数据直接发送，无需连接。</td>
+</tr>
+<tr>
+<td><strong>传输可靠性</strong></td>
+<td>提供可靠的传输，有确认、重传机制，确保数据不丢失。</td>
+<td>不保证数据的完整性或顺序，无确认和重传机制。</td>
+</tr>
+<tr>
+<td><strong>数据传输顺序</strong></td>
+<td>保证数据按顺序到达，乱序数据会被重新排序。</td>
+<td>不保证数据的顺序，可能出现乱序。</td>
+</tr>
+<tr>
+<td><strong>流量控制</strong></td>
+<td>使用流量控制机制，防止网络拥塞。</td>
+<td>无流量控制机制，可能导致网络拥塞。</td>
+</tr>
+<tr>
+<td><strong>拥塞控制</strong></td>
+<td>具有拥塞控制机制，防止过多的数据堵塞网络。</td>
+<td>无拥塞控制机制，发送速度不受限制。</td>
+</tr>
+<tr>
+<td><strong>传输速度</strong></td>
+<td>传输较慢，因需要确认、流量控制和拥塞控制。</td>
+<td>传输速度较快，因不需要建立连接和确认。</td>
+</tr>
+<tr>
+<td><strong>传输方式</strong></td>
+<td>面向字节流，数据以流的形式发送。</td>
+<td>面向报文，数据以独立的数据报发送。</td>
+</tr>
+<tr>
+<td><strong>开销</strong></td>
+<td>较大，头部开销20字节，包含序列号、确认号等控制信息。</td>
+<td>较小，头部开销8字节，仅包含基本控制信息。</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>适用于对可靠性要求高的场景，如文件传输、网页浏览。</td>
+<td>适用于实时性要求高的场景，如视频会议、在线游戏。</td>
+</tr>
+</tbody></table>
+<h2 id="3-适用场景"><a href="#3-适用场景" class="headerlink" title="3. 适用场景"></a>3. 适用场景</h2><ul>
+<li><p><strong>TCP</strong>适用于需要高可靠性的数据传输场景：</p>
+<ul>
+<li>文件传输（FTP）</li>
+<li>电子邮件（SMTP）</li>
+<li>网页浏览（HTTP&#x2F;HTTPS）</li>
+<li>数据库同步</li>
+</ul>
+</li>
+<li><p><strong>UDP</strong>适用于对实时性要求较高但对数据可靠性要求较低的场景：</p>
+<ul>
+<li>实时视频、语音传输（如VoIP）</li>
+<li>在线游戏</li>
+<li>广播通信（如DNS、DHCP）</li>
+<li>视频会议</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>TCP和UDP各有优缺点。TCP适合需要可靠传输的应用场景，提供连接、可靠性、流量和拥塞控制等功能。而UDP则适用于对传输速度要求高、对数据丢失不敏感的实时应用场景。选择使用TCP还是UDP，取决于应用对传输速度和数据可靠性的具体需求。</p>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 790529148@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -555,11 +677,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
