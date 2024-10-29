@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法 | Junecan&#39;s blog</title>
+  <meta name="keywords" content=" ROS , roscore ">
+  <meta name="description" content="【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法 | Junecan&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://junecan.github.io/about/index.html">
+<meta property="og:site_name" content="Junecan&#39;s blog">
+<meta property="og:description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-20T17:18:05.000Z">
+<meta property="article:modified_time" content="2024-10-20T17:40:21.611Z">
+<meta property="article:author" content="Junecan">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Junecan</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Junecan"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(16)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(13)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;操作系统">
+            
+            操作系统
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;通信协议">
+            
+            通信协议
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论知识">
+            <i class="fold iconfont icon-right"></i>
+            理论知识
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论知识&lt;---&gt;控制理论">
+            
+            控制理论
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="岗位认识">
+            <i class="fold iconfont icon-right"></i>
+            岗位认识
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="岗位认识&lt;---&gt;汽车领域">
+            
+            汽车领域
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="16">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>控制理论</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>汽车</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>嵌入式通信协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>三次握手</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>摄像头</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>树莓派3B</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>树莓派3B+</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>四次挥手</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>质量岗</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CAN</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>I2C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ROS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>roscore</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SPI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>uart</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Ubuntu mate 16.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>UDP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>usart</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 岗位认识 汽车领域 "
+           href="/2024/10/22/%E8%B4%A8%E9%87%8F%E5%B2%97/"
+           data-tag="汽车,质量岗"
+           data-author="" >
+            <span class="post-title" title="质量岗位的理解">质量岗位的理解</span>
+            <span class="post-date" title="2024-10-22 00:08:46">2024/10/22</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/23/%E6%A0%91%E8%8E%93%E6%B4%BE3B%20%E5%92%8C%20%E6%A0%91%E8%8E%93%E6%B4%BE3B+%20%E5%AE%89%E8%A3%85%20Ubuntu%20mate16.04%E7%89%88%E6%9C%AC%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%20%EF%BC%9F/"
+           data-tag="树莓派3B,树莓派3B+,Ubuntu mate 16.04"
+           data-author="" >
+            <span class="post-title" title="树莓派3B 和 树莓派3B+ 安装 Ubuntu mate16.04版本的那些事 ？">树莓派3B 和 树莓派3B+ 安装 Ubuntu mate16.04版本的那些事 ？</span>
+            <span class="post-date" title="2024-04-23 03:37:25">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/17/%E3%80%90%E9%81%87%E3%80%91ROS%E4%B8%AD%E4%B8%BB%E4%BB%8E%E6%9C%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%91%84%E5%83%8F%E5%A4%B4%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag="ROS,摄像头"
+           data-author="" >
+            <span class="post-title" title="【遇】ROS中主从机配置中摄像头 问题及解决方法">【遇】ROS中主从机配置中摄像头 问题及解决方法</span>
+            <span class="post-date" title="2024-04-17 04:28:18">2024/04/17</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/14/%E3%80%90%E9%81%87%E3%80%91ROS%E4%B8%AD%E4%B8%BB%E4%BB%8E%E6%9C%BA%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%20roscore%20%E5%91%BD%E4%BB%A4%E7%9A%84%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag="ROS,roscore"
+           data-author="" >
+            <span class="post-title" title="【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法">【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法</span>
+            <span class="post-date" title="2024-04-14 02:27:18">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="All 理论知识 控制理论 "
+           href="/2022/11/26/PID%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E5%90%84%E4%B8%AA%E7%8E%AF%E8%8A%82%E4%BD%9C%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%BA%94%E7%94%A8/"
+           data-tag="PID,控制理论"
+           data-author="" >
+            <span class="post-title" title="PID算法的原理及各个环节作用说明及应用">PID算法的原理及各个环节作用说明及应用</span>
+            <span class="post-date" title="2022-11-26 02:42:37">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2021-10-20 01:17:05">2021/10/20</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/04/10/USB%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI,CAN"
+           data-author="" >
+            <span class="post-title" title="USB通信协议">USB通信协议</span>
+            <span class="post-date" title="2019-04-10 11:14:25">2019/04/10</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/04/01/CAN%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="CAN总线通信协议">CAN总线通信协议</span>
+            <span class="post-date" title="2019-04-01 17:17:37">2019/04/01</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/28/uart%E5%92%8Cusart%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E7%9A%84%E5%BC%82%E5%90%8C/"
+           data-tag="嵌入式通信协议,uart,usart"
+           data-author="" >
+            <span class="post-title" title="uart和usart串口通信的异同">uart和usart串口通信的异同</span>
+            <span class="post-date" title="2019-03-28 11:14:37">2019/03/28</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/28/SPI%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C"
+           data-author="" >
+            <span class="post-title" title="SPI通信协议">SPI通信协议</span>
+            <span class="post-date" title="2019-03-28 09:15:37">2019/03/28</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2019/03/27/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E5%8E%9F%E7%90%86/"
+           data-tag="内存,内存管理"
+           data-author="" >
+            <span class="post-title" title="内存映射原理">内存映射原理</span>
+            <span class="post-date" title="2019-03-27 12:13:47">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/Example/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="模板案例">模板案例</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/I2C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议"
+           data-author="" >
+            <span class="post-title" title="I2C通信协议">I2C通信协议</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="嵌入式系统开发中常用通信协议">嵌入式系统开发中常用通信协议</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/25/TCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"
+           data-tag="TCP,三次握手,四次挥手"
+           data-author="" >
+            <span class="post-title" title="TCP协议的三次握手 和 四次挥手">TCP协议的三次握手 和 四次挥手</span>
+            <span class="post-date" title="2019-03-25 12:13:47">2019/03/25</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/23/TCP%E5%8D%8F%E8%AE%AE%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE%E5%8C%BA%E5%88%AB/"
+           data-tag="TCP,UDP"
+           data-author="" >
+            <span class="post-title" title="TCP协议 与 UDP协议">TCP协议 与 UDP协议</span>
+            <span class="post-date" title="2019-03-23 15:13:47">2019/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="嵌入式">嵌入式</a> > 
+            
+            <a  data-rel="嵌入式&lt;---&gt;操作系统">操作系统</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">ROS</a>
+            
+            <a class="color3">roscore</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-10-29 17:12:44'>2024-04-14 02:27</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ROS%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-text">ROS配置问题记录</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ROS配置问题记录"><a href="#ROS配置问题记录" class="headerlink" title="ROS配置问题记录"></a>ROS配置问题记录</h2><p><strong>本文实验平台为Turtlebot3-waffle_pi</strong><br>（1）电脑PC中安装了一个Ubuntu16.04 64位的虚拟机；<br>（2）树莓派3B，安装的是Ubuntu mate16.04 for raspeberry，是armhf架构的，在官网上16.04版本，专为树莓派的系统只找到armhf架构的。<br><strong>【注】</strong>配置好前期环境后（环境+主从机IP）<a target="_blank" rel="noopener" href="https://www.ncnynl.com/category/Turtlebot3-waffle-pi/">配置环境教程地址</a>，配置过程也遇到些问题，主要原因是由于“地方网络”的原因，需要换源（可能换的源不合适，就方法是重新换其他的，后续有机会介绍下环境配置问题），当然最好的解决方案是通过梯子，规避“地方网络”原因，会解决掉很多不必要的麻烦。<br><strong>问题1</strong><br>在执行<code>roscore</code>时出现以下错误信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/opt/ros/indigo/lib/python2.7/dist-packages/roslaunch/__init__.py&quot;</span>, line <span class="number">257</span>, in main</span><br><span class="line">    <span class="title function_">write_pid_file</span><span class="params">(options.pid_fn, options.core, options.port)</span></span><br><span class="line">  File &quot;/opt/ros/indigo/lib/python2.7/dist-packages/roslaunch/__init__.py&quot;, line 110, in write_pid_file</span><br><span class="line">    with <span class="title function_">open</span><span class="params">(pid_fn, <span class="string">&quot;w&quot;</span>)</span> as f:</span><br><span class="line">IOError: [Errno 13] Permission denied: &#x27;/home/hht/.ros/roscore-11311.pid&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>问题1解决方法</strong><br>网上有很多方法，我试的一种方法是来自博客园（<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qiuheng/p/9140976.html">源-解决方案出处</a>），分析错误信息中有<code>Permission denied</code>，一般为权限问题，设置<code>sudo chmod 777 -R ~/.ros/</code>，表示对<code>.ros</code>文件下的所有文件及子目录中文件（递归）赋予 <em><code>可读、可写、可执行</code></em> 权限。然后再 执行 <code>roscore</code><br><strong>问题2</strong><br>执行 <code>roscore</code> 后，可能出现以下错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">... logging to /home/rasp/.ros/<span class="built_in">log</span>/<span class="number">5169</span>ab92-f97c<span class="number">-11</span>ee-bf9e<span class="number">-000</span>c29861846/roslaunch-rasp-virtual-machine<span class="number">-2643.l</span>og</span><br><span class="line">Checking <span class="built_in">log</span> directory <span class="keyword">for</span> disk usage. This may take awhile.</span><br><span class="line">Press Ctrl-C to interrupt</span><br><span class="line">Done checking <span class="built_in">log</span> file disk usage. Usage is &lt;<span class="number">1</span>GB.</span><br><span class="line"></span><br><span class="line">Unable to contact my own server at [http:<span class="comment">//192.168.0.179:46235/].</span></span><br><span class="line">This usually means that the network is not configured properly.</span><br><span class="line"></span><br><span class="line">A common cause is that the machine cannot connect to itself.  Please check</span><br><span class="line"><span class="keyword">for</span> errors by running:</span><br><span class="line"></span><br><span class="line">	ping <span class="number">192.168</span><span class="number">.0</span><span class="number">.179</span></span><br><span class="line"></span><br><span class="line">For more tips, please see</span><br><span class="line"></span><br><span class="line">	http:<span class="comment">//www.ros.org/wiki/ROS/NetworkSetup</span></span><br><span class="line"></span><br><span class="line">The traceback <span class="keyword">for</span> the exception was written to the <span class="built_in">log</span> file</span><br></pre></td></tr></table></figure>
+<p><strong>问题2解决方法</strong><br>（1）检查主机和从机之间是否能够互相 <code>ping</code>通，主从机IP地址用<code>ifconfig</code>查询。<br>（2）检查是否在主机和从机中的家目录下<code>.bashrc</code>文件末尾添加了下面语句：<br>主机（PC端）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> ROS_MASTER_URI=http:<span class="comment">//主机IP地址:11311</span></span><br><span class="line"><span class="keyword">export</span> ROS_HOSTNAME=主机IP地址</span><br></pre></td></tr></table></figure>
+<p>【一定要注意】：<br>主机端的添加语句中的IP地址都是主机自身IP地址<br>主机端的添加语句中的IP地址都是主机自身IP地址<br>主机端的添加语句中的IP地址都是主机自身IP地址<br>（。。。重要的事说三遍）</p>
+<p>从机（树莓派端）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> ROS_MASTER_URI=http:<span class="comment">//主机IP地址:11311</span></span><br><span class="line"><span class="keyword">export</span> ROS_HOSTNAME=从机IP地址</span><br></pre></td></tr></table></figure>
+<p>（3）添加好后。分别在主机和从机上执行 source ~&#x2F;.bashrc，启动ros相配配置文件（每次开机都需重复启动）。<br>（4）此时，再执行 <code>roscore</code>，主机通信环境就配置好了，主机界面如下所示<br><img src="https://i-blog.csdnimg.cn/blog_migrate/6fbab43d040c259dc8cb351c475228d9.png" alt="主机启动成功"><br>从机执行<code>rostopic list</code>，查看是否订阅到主机发布的话题，若出现如下两条语句</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/rosout</span><br><span class="line">/rosout_agg</span><br></pre></td></tr></table></figure>
+<p>到这就表示主-从机通信环境配好。</p>
+<p>本文所采用方法可能不能解决所有表面看上去与本文问题相同的问题（因为造成相同问题的原因有很多，解决方法并不一致）。<br>若本文对您有用，欢迎评论区留言，以供往后相同问题的 读者 看到 留言后（产生希望），再按此文操作。若无用 或 为您提供思路 ，也请在评论区讨论，共同学习，以供往后读者 作参考。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 790529148@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

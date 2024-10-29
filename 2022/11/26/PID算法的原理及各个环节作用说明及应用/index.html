@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PID算法的原理及各个环节作用说明及应用 | Junecan&#39;s blog</title>
+  <meta name="keywords" content=" PID , 控制理论 ">
+  <meta name="description" content="PID算法的原理及各个环节作用说明及应用 | Junecan&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://junecan.github.io/about/index.html">
+<meta property="og:site_name" content="Junecan&#39;s blog">
+<meta property="og:description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-20T17:18:05.000Z">
+<meta property="article:modified_time" content="2024-10-20T17:40:21.611Z">
+<meta property="article:author" content="Junecan">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Junecan</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/Junecan"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(16)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="嵌入式">
+            <i class="fold iconfont icon-right"></i>
+            嵌入式
+            <small>(13)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;操作系统">
+            
+            操作系统
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="嵌入式&lt;---&gt;通信协议">
+            
+            通信协议
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论知识">
+            <i class="fold iconfont icon-right"></i>
+            理论知识
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论知识&lt;---&gt;控制理论">
+            
+            控制理论
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="岗位认识">
+            <i class="fold iconfont icon-right"></i>
+            岗位认识
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="岗位认识&lt;---&gt;汽车领域">
+            
+            汽车领域
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="16">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>控制理论</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>内存管理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>汽车</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>嵌入式通信协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>三次握手</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>摄像头</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>树莓派3B</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>树莓派3B+</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>四次挥手</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>质量岗</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CAN</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>I2C</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PID</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ROS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>roscore</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SPI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>uart</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Ubuntu mate 16.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>UDP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>usart</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 岗位认识 汽车领域 "
+           href="/2024/10/22/%E8%B4%A8%E9%87%8F%E5%B2%97/"
+           data-tag="汽车,质量岗"
+           data-author="" >
+            <span class="post-title" title="质量岗位的理解">质量岗位的理解</span>
+            <span class="post-date" title="2024-10-22 00:08:46">2024/10/22</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/23/%E6%A0%91%E8%8E%93%E6%B4%BE3B%20%E5%92%8C%20%E6%A0%91%E8%8E%93%E6%B4%BE3B+%20%E5%AE%89%E8%A3%85%20Ubuntu%20mate16.04%E7%89%88%E6%9C%AC%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%20%EF%BC%9F/"
+           data-tag="树莓派3B,树莓派3B+,Ubuntu mate 16.04"
+           data-author="" >
+            <span class="post-title" title="树莓派3B 和 树莓派3B+ 安装 Ubuntu mate16.04版本的那些事 ？">树莓派3B 和 树莓派3B+ 安装 Ubuntu mate16.04版本的那些事 ？</span>
+            <span class="post-date" title="2024-04-23 03:37:25">2024/04/23</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/17/%E3%80%90%E9%81%87%E3%80%91ROS%E4%B8%AD%E4%B8%BB%E4%BB%8E%E6%9C%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%91%84%E5%83%8F%E5%A4%B4%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag="ROS,摄像头"
+           data-author="" >
+            <span class="post-title" title="【遇】ROS中主从机配置中摄像头 问题及解决方法">【遇】ROS中主从机配置中摄像头 问题及解决方法</span>
+            <span class="post-date" title="2024-04-17 04:28:18">2024/04/17</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2024/04/14/%E3%80%90%E9%81%87%E3%80%91ROS%E4%B8%AD%E4%B8%BB%E4%BB%8E%E6%9C%BA%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%20roscore%20%E5%91%BD%E4%BB%A4%E7%9A%84%20%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag="ROS,roscore"
+           data-author="" >
+            <span class="post-title" title="【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法">【遇】ROS中主从机通信环境测试中的 roscore 命令的 问题及解决方法</span>
+            <span class="post-date" title="2024-04-14 02:27:18">2024/04/14</span>
+        </a>
+        
+        
+        <a  class="All 理论知识 控制理论 "
+           href="/2022/11/26/PID%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E5%90%84%E4%B8%AA%E7%8E%AF%E8%8A%82%E4%BD%9C%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E5%BA%94%E7%94%A8/"
+           data-tag="PID,控制理论"
+           data-author="" >
+            <span class="post-title" title="PID算法的原理及各个环节作用说明及应用">PID算法的原理及各个环节作用说明及应用</span>
+            <span class="post-date" title="2022-11-26 02:42:37">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2021/10/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2021-10-20 01:17:05">2021/10/20</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/04/10/USB%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI,CAN"
+           data-author="" >
+            <span class="post-title" title="USB通信协议">USB通信协议</span>
+            <span class="post-date" title="2019-04-10 11:14:25">2019/04/10</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/04/01/CAN%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="CAN总线通信协议">CAN总线通信协议</span>
+            <span class="post-date" title="2019-04-01 17:17:37">2019/04/01</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/28/uart%E5%92%8Cusart%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E7%9A%84%E5%BC%82%E5%90%8C/"
+           data-tag="嵌入式通信协议,uart,usart"
+           data-author="" >
+            <span class="post-title" title="uart和usart串口通信的异同">uart和usart串口通信的异同</span>
+            <span class="post-date" title="2019-03-28 11:14:37">2019/03/28</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/28/SPI%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C"
+           data-author="" >
+            <span class="post-title" title="SPI通信协议">SPI通信协议</span>
+            <span class="post-date" title="2019-03-28 09:15:37">2019/03/28</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 操作系统 "
+           href="/2019/03/27/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E5%8E%9F%E7%90%86/"
+           data-tag="内存,内存管理"
+           data-author="" >
+            <span class="post-title" title="内存映射原理">内存映射原理</span>
+            <span class="post-date" title="2019-03-27 12:13:47">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/Example/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="模板案例">模板案例</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/I2C%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议"
+           data-author="" >
+            <span class="post-title" title="I2C通信协议">I2C通信协议</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/27/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"
+           data-tag="嵌入式通信协议,I2C,SPI"
+           data-author="" >
+            <span class="post-title" title="嵌入式系统开发中常用通信协议">嵌入式系统开发中常用通信协议</span>
+            <span class="post-date" title="2019-03-27 10:15:37">2019/03/27</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/25/TCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"
+           data-tag="TCP,三次握手,四次挥手"
+           data-author="" >
+            <span class="post-title" title="TCP协议的三次握手 和 四次挥手">TCP协议的三次握手 和 四次挥手</span>
+            <span class="post-date" title="2019-03-25 12:13:47">2019/03/25</span>
+        </a>
+        
+        
+        <a  class="All 嵌入式 通信协议 "
+           href="/2019/03/23/TCP%E5%8D%8F%E8%AE%AE%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE%E5%8C%BA%E5%88%AB/"
+           data-tag="TCP,UDP"
+           data-author="" >
+            <span class="post-title" title="TCP协议 与 UDP协议">TCP协议 与 UDP协议</span>
+            <span class="post-date" title="2019-03-23 15:13:47">2019/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-PID算法的原理及各个环节作用说明及应用" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">PID算法的原理及各个环节作用说明及应用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="理论知识">理论知识</a> > 
+            
+            <a  data-rel="理论知识&lt;---&gt;控制理论">控制理论</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">PID</a>
+            
+            <a class="color5">控制理论</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-10-29 17:24:39'>2022-11-26 02:42</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81PID%E7%9A%84%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、PID的原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="toc-text">发展历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E5%8F%8A%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="toc-text">公式推导及原理说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E7%8E%AF%E8%8A%82%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">三个环节的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81PID%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="toc-text">二、PID的应用介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PID%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%AD%E8%AF%B4%E6%98%8E%EF%BC%88%E6%A0%B9%E6%8D%AE%E8%87%AA%E5%B7%B1%E7%A2%B0%E5%88%B0%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%89"><span class="toc-text">PID实际应用中说明（根据自己碰到问题的总结）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%96%87%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84PID%E7%B3%BB%E6%95%B0%E8%B0%83%E8%8A%82%E6%A8%A1%E5%9D%97"><span class="toc-text">三、文中用到的PID系数调节模块</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@<a href="PID%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95">TOC</a></p>
+<h1 id="一、PID的原理介绍"><a href="#一、PID的原理介绍" class="headerlink" title="一、PID的原理介绍"></a>一、PID的原理介绍</h1><h2 id="发展历史"><a href="#发展历史" class="headerlink" title="发展历史"></a>发展历史</h2><p>1、1932年美国的奈奎斯特（H.Nyquist）发表了一篇采用图形的方法来判断系统的稳定性的论文；<br>2、在奈奎斯特的工作基础上，伯德（H.W.Bode）等人建立了一套在频域范围设计<strong>反馈</strong>放大器的方法。<br>3、后来，<strong>反馈控制原理</strong>开始应用于工业过程中，在1936年英国的考伦德（A.Callender）和斯蒂文森（A.Stevenson）等人正式给出了PID控制方法。<br>参考资料链接<br><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/a76e5b32f9d6195f312b3169a45177232f60e497.html?_wkts_=1669377111632&bdQuery=PID%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2">PID发展史</a><br><strong>注：</strong><br>PID算法分为比例（Proportional）、积分（Integral）、微分（Differential）三个部分，其输入是期望值（也叫参考值或目标值）与系统输出的实际值的差。在PID算法还没有被正式提出时，其中比例环节已经被应用，只是没有给出正式的名字而已，比如用杯子接水时，人脑就可以看成是一个比例控制环节，整个过程如下：<br>（1）人眼是传感器，不断接收杯口位置于杯内水位的差”err”输入到人脑；<br>（2）人脑通过误差值”err”来控制手去调节控水阀门开合的大小，“err”&lt;0,且越小，阀门开的越大，随着“err”-&gt;’0’，阀门就开的越小直至关闭。</p>
+<h2 id="公式推导及原理说明"><a href="#公式推导及原理说明" class="headerlink" title="公式推导及原理说明"></a>公式推导及原理说明</h2><p><strong>1、公式推导（公式编辑器还不太会，后续补上）</strong><br><strong>1.1 PID连续形式：</strong><br><img src="https://i-blog.csdnimg.cn/blog_migrate/e33acf061b848b1ae8e20a8fac785c5f.png" alt="连续"></p>
+<p>其中r(t)为参考值，c(t)为系统输出实际值。<br><strong>1.2 PID离散形式：</strong><br><img src="https://i-blog.csdnimg.cn/blog_migrate/1dc6d9f849639f773011f7019c30b3f7.png" alt="离散"><br><strong>注意</strong>：这里给出的两种PID控制公式形式是经过简化的，与其它地方给出的公式中系数不太一样，这是为了便于理解，控制原理及过程都是一致的。<br><strong>错误纠正：</strong>上述PID形式为位置式PID，不应该有u0<br><strong>2、原理说明</strong><br><strong>2.1 控制的目的</strong><br>对某一系统施加控制，其目的一定是想让系统从某一状态到达所期望的状态，比如人在驯服动物时，对动物施加的一系列行为，目的是想让动物从最初的不听命令的态度转变为服从人的命令的态度。<br><strong>2.2 PID的原理</strong><br>从公式可以看到，PID控制器有一个系统输出c(t)的反馈，所以PID是一个反馈控制器，通过参考值与反馈值的差“err”，输入到PID控制器，会得到一个输出，将输出作用于系统。下面举一个给水壶加热的例子，来说明PID输出是怎么控制系统的。<br><img src="https://i-blog.csdnimg.cn/blog_migrate/e92635afb991ac5c14a8814ecb0fd191.png" alt="加热系统"><br>上图为用PID控制加热水壶例子示意图，其中最左边的圆圈中带一个’×‘符号计算每次参考值和反馈值的温度差值’err‘，然后输入PID控制器，PID控制器的输出给到一个加热器的能量转换模块，这一部分是由传感器和各种元器件构成，在实际的应用中需要考虑。<br>整个系统中PID控制流程为： 刚开始，差值’err‘很大，所以PID输出也会很大，能量转换模块给的能量输出也会很大，随着水壶中温度上升，差值’err‘逐渐减小，PID控制器的输出也会减小，能量转换模块的能量输出也会减小。</p>
+<h2 id="三个环节的作用"><a href="#三个环节的作用" class="headerlink" title="三个环节的作用"></a>三个环节的作用</h2><p><strong>1 比例环节（比例控制）</strong><br>比例环节就像它的名字一样，一个比例系数乘以误差值’err‘，来调节系统的输出，下面先不考虑控制系统的能量转换模块，就只考虑用比例环节来进行系统的初始值到期望值的调节，如下图所示，期望值V设的50，比例系数Kp为0.03，积分系数和微分系数为Ki，Kd，其结果如下<br><img src="https://i-blog.csdnimg.cn/blog_migrate/b2a783b4f616d8a59066d39d76224099.png" alt="仿真图1"><br>增大比例系数Kp，系统到达期望值的时间越快（响应速度更快），设Kp为0.2，结果如下<br><img src="https://i-blog.csdnimg.cn/blog_migrate/24e761a1335de631a33344e7c46d1b26.png" alt="仿真图2"><br>可以明显看到，响应速度更快了。<br><strong>2 积分环节（积分控制）</strong><br>在大多数资料上写的都是积分环节的作用是消除系统的稳态误差，它的作用的确是这样的。<br>但是这里关键的是要理解什么是稳态误差？造成稳态误差的原因是什么？“稳态误差”可以理解为系统期望状态与系统达到某个平衡状态（稳定状态）时的差值。“造成稳态误差的原因”是现实世界中客观存在的规律，如在上述加热水壶的过程中，我们并没有考虑在每次加热时，水壶的热量散失的情况，现在考虑水壶加热过程有热量散失的情况，还是只用比例环节来控制，设置比例系数Kp为0.2，Ki和Kd为0，水壶从0℃加到50℃，每次控制器输出加热时，散失的热量让水壶温度下降1℃，这里假设水壶被加热到45℃，此时误差’err’为5℃，控制器u&#x3D;’err’×Kp&#x3D;1，所以给水壶加热1℃，因为每加热一次就会损失1℃，故在只有比例控制下，考虑水壶散热情况（在实际中是必然存在的），水壶只能被加热到45℃。因此这里引入积分环节，对每一次的误差进行累加，当系统处于稳态且有稳态误差时，可以增大系统的输入量以达到消除稳态误差的效果。<br><img src="https://i-blog.csdnimg.cn/blog_migrate/f836b2e801498baea739029e118f3627.png" alt="仿真图3"></p>
+<p>图片中右上角的’loss’数值代表的是每次控制器输出u，都会损失掉 loss×u 的量。可以看到考虑损失量时，系统就会存在稳态误差。现在令Ki&#x3D;0.001,结果如下：<br><img src="https://i-blog.csdnimg.cn/blog_migrate/09a84c3b8cb1c80007a9c27858f44296.png" alt="仿真图4"><br>可以看到，系统可以达到期望值。<br><strong>3 微分环节（微分控制）</strong><br>微分环节在很多资料中都有不同的解释，但是最终想表达的意思都是一致的。这里我把微分环节理解为一个惯性环节，下面具体说一下为什么这么理解，举两个例子。<br><img src="https://i-blog.csdnimg.cn/blog_migrate/d0ad8c20d3a76187569d63d27cc7cb74.png" alt="PID各个环节"><br>（1）加热水壶的例子<br>水壶初始温度为0℃，期望温度为50℃，<br><em>第一种情况</em>，当温度往上涨，err(n)为第n次误差，err(n-1)为第n-1次误差，每一次 err(n)小于err(n-1)，即 [err(n)-err(n-1)]&lt;0，如上图公式可以看到，微分环节u3始终为负，所以起到一个阻碍温度增加的作用。加入微分环节的作用是在水壶快要到达期望温度时，能够较为平缓的到达，降低出现超过期望值的情况（减少震荡）。<br>*第二种情况*，当水壶温度值超过期望值，未达到峰值时，err(n) &lt; 0 , err(n-1) &lt; 0，且err(n) &lt; err(n-1)，所以[err(n)-err(n-1)]&lt;0，即微分环节依然是在阻碍温度增加（此时比例环节和积分环节也是在阻碍温度增加）。<br>*第三种情况*，当温度上涨到峰值开始下降，且未降到期望温度时，此时err(n) &lt; 0 , err(n-1) &lt; 0，且err(n) &gt; err(n-1)，所以[err(n)-err(n-1)]&gt;0，微分环节为正，起到阻碍温度下降的作用（比例环节和积分环节促进温度降低作用）。<br>从上述三种情况可以看到，微分环节的作用，其实就是像惯性一样，它具有一个维持系统保持原有状态的能力，从水壶加热的过程可以看到，当水壶温度上升到超过期望值，到达峰值，然后温度下降的过程，水壶的温度曲线就在期望温度值上下震荡，通过微分环节的惯性作用，可以减小曲线的震荡。<br>（2）汽车刹车例子<br>正常情况下，汽车在路口看到红灯时，要做减速，停在路口，等绿灯后通行。当汽车快到达路口时，假设汽车从速度10m\s做减速运动到速度为0，在这个过程，初始状态为汽车速度10m\s，期望状态为汽车速度0 m\s，此时err(n) &lt; 0 , err(n-1) &lt; 0，且err(n) &gt; err(n-1)，所以[err(n)-err(n-1)]&gt;0，比例环节和积分环节都是在促进汽车制动，而微分环节是在阻碍汽车制动（像前面说的，微分环节具有惯性作用，会维持系统本来的状态），在刹车过程中，微分环节的作用可以理解为，让汽车在刹车的过程变得平缓，避免出现急踩刹车的情况。</p>
+<h1 id="二、PID的应用介绍"><a href="#二、PID的应用介绍" class="headerlink" title="二、PID的应用介绍"></a>二、PID的应用介绍</h1><h2 id="PID实际应用中说明（根据自己碰到问题的总结）"><a href="#PID实际应用中说明（根据自己碰到问题的总结）" class="headerlink" title="PID实际应用中说明（根据自己碰到问题的总结）"></a>PID实际应用中说明（根据自己碰到问题的总结）</h2><p>网上资料以及其它的一些资料中，关于PID的学习资料基本都没有考虑在实际应用中涉及到的控制系统中各种能量转换的情况，比如在大多数的PID学习资料中，都是规定某个系统的初始值和期望值，然后用PID算法进行调节，把初始值调到期望值。但是在实际的系统里，并不是这么简单的，这中间会涉及到各种传感器和能量的转换，比如控制小车速度，这需要编码器测到电机的转速，然后转换成电压值来进行PID的控制，并不是简单的直接控制小车速度。<br>所以将PID应用于实际的系统中时，要分析哪些是系统的被控量和控制量。怎么去分辨被控量和控制量，被控量是自动控制系统的输出（也被称为输出量，即被控对象中的物理量），控制量是自动控制系统中执行机构中的物理量。举一个例子，例如电风扇，其中被控量是风扇的风力大小或是风速，可以通过人为的调节风力的级别（一档位、二档位等），也就是系统控制的期望值，控制量是电风扇中电机的转速，被控对象就是电风扇，可以将电风扇的控制过程简化成如下：当设定风扇风速档位后（期望值，是以某个值的电压或电流形式），传感器会检测风扇的转速（被控量），将其转化成相应大小的电压或电流信号传给变送器，然后传给控制器，控制器通过期望值与风扇的实际值相比较，得出一个输出作用于电风扇的电机上，来调节电机的转速（控制量），进而让风扇的风力到达期望值。<br><strong>注：</strong><br>上述是自己学习过程的一些理解，有很多不严谨和不对的地方，欢迎读者进行批评指正。</p>
+<h1 id="三、文中用到的PID系数调节模块"><a href="#三、文中用到的PID系数调节模块" class="headerlink" title="三、文中用到的PID系数调节模块"></a>三、文中用到的PID系数调节模块</h1><p><a target="_blank" rel="noopener" href="https://www.aliyundrive.com/s/aKoVP86efXQ">阿里网盘链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1VeQRKUd_CLTptEHwDkNNIQ">百度网盘链接</a><br>提取码：1111</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 790529148@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
