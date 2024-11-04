@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SPI通信协议 | Junecan&#39;s blog</title>
-  <meta name="keywords" content=" 嵌入式通信协议 , I2C ">
-  <meta name="description" content="SPI通信协议 | Junecan&#39;s blog">
+  <title>嵌入式单片机技术学习路线 | Junecan&#39;s blog</title>
+  <meta name="keywords" content=" 嵌入式 , 软件 , 硬件 ">
+  <meta name="description" content="嵌入式单片机技术学习路线 | Junecan&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="关于我你好，我是Junecan！一名爱好各类技术的业余选手！！！ 兴趣爱好 阅读：科技、经济与社会趋势相关的书籍 旅行：探索不同的文化与自然风景 运动：保持身体健康的各种活动  联系我如果你对我的研究或者项目有任何问题，欢迎通过以下方式与我联系：  邮箱：Evans-Jean@outlook.com  感谢你的访问，期待与你的交流！">
 <meta property="og:type" content="website">
@@ -724,9 +724,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-SPI通信协议" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-嵌入式软件技术路线" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">SPI通信协议</h1>
+        <h1 class="article-title">嵌入式单片机技术学习路线</h1>
     
     <div class="article-meta">
         
@@ -738,7 +738,7 @@
             
             <a  data-rel="嵌入式">嵌入式</a> > 
             
-            <a  data-rel="嵌入式&lt;---&gt;通信协议">通信协议</a>
+            <a  data-rel="嵌入式&lt;---&gt;技术路线">技术路线</a>
             
         </span>
         
@@ -746,16 +746,18 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">嵌入式通信协议</a>
+            <a class="color4">嵌入式</a>
             
-            <a class="color4">I2C</a>
+            <a class="color3">软件</a>
+            
+            <a class="color3">硬件</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-10-29 16:00:16'>2019-03-28 09:15</time>
+            Created At : <time class="date" title='Updated At: 2024-11-05 02:31:26'>2023-06-26 00:17</time>
         
     </div>
     <div class="article-meta">
@@ -777,7 +779,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPI-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3"><span class="toc-text">SPI 通信协议详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">2. 工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-SPI-%E4%BF%A1%E5%8F%B7%E7%BA%BF"><span class="toc-text">3. SPI 信号线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-MOSI"><span class="toc-text">3.1. MOSI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-MISO"><span class="toc-text">3.2. MISO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-SCLK"><span class="toc-text">3.3. SCLK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-SS-CS"><span class="toc-text">3.4. SS&#x2F;CS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="toc-text">4. 数据帧格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">5. 优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">6. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%80%BB%E7%BB%93"><span class="toc-text">7. 总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8D%95%E7%89%87%E6%9C%BA%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-text">嵌入式单片机技术学习路线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E9%98%B6%E6%AE%B5%E5%88%86%E7%B1%BB"><span class="toc-text">一 单片机学习阶段分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%AF%8F%E4%B8%AA%E9%98%B6%E6%AE%B5%E8%AF%A5%E6%8E%8C%E6%8F%A1%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="toc-text">二 每个阶段该掌握的技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%B0%8F%E8%8F%9C%E9%B8%A1%E9%98%B6%E6%AE%B5"><span class="toc-text">2.1 小菜鸡阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">C语言基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80"><span class="toc-text">单片机基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%85%A5%E9%97%A8%E9%B8%A1%E9%98%B6%E6%AE%B5"><span class="toc-text">2.2 入门鸡阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E9%AB%98%E7%BA%A7"><span class="toc-text">单片机高级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E6%9D%BF-%E7%9C%8B%E6%87%82%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">电路板(看懂简单原理图)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%BF%9B%E9%98%B6%E9%B8%A1%E9%98%B6%E6%AE%B5"><span class="toc-text">2.3 进阶鸡阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%86%85%E5%8A%9F"><span class="toc-text">通用内功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E9%97%A8%E7%BB%9D%E6%8A%80"><span class="toc-text">独门绝技</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%80%81%E5%8F%B8%E6%9C%BA%E9%98%B6%E6%AE%B5"><span class="toc-text">2.4 老司机阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91%E6%8A%80%E6%9C%AF%E6%89%A9%E5%B1%95"><span class="toc-text">横向技术扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86"><span class="toc-text">管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E4%B8%9A%E8%AE%A4%E7%9F%A5"><span class="toc-text">行业认知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%8F%B8"><span class="toc-text">公司</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E6%80%BB%E7%BB%93"><span class="toc-text">三 总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -793,62 +795,217 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SPI-通信协议详解"><a href="#SPI-通信协议详解" class="headerlink" title="SPI 通信协议详解"></a>SPI 通信协议详解</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><a href="#1-%E7%AE%80%E4%BB%8B">1. 简介</a></li>
-<li><a href="#2-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">2. 工作原理</a></li>
-<li><a href="#3-spi-%E4%BF%A1%E5%8F%B7%E7%BA%BF">3. SPI 信号线</a><ul>
-<li><a href="#31-mosi">3.1. MOSI</a></li>
-<li><a href="#32-miso">3.2. MISO</a></li>
-<li><a href="#33-sclk">3.3. SCLK</a></li>
-<li><a href="#34-sscs">3.4. SS&#x2F;CS</a></li>
+        <h1 id="嵌入式单片机技术学习路线"><a href="#嵌入式单片机技术学习路线" class="headerlink" title="嵌入式单片机技术学习路线"></a>嵌入式单片机技术学习路线</h1><h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#%E4%B8%80-%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E9%98%B6%E6%AE%B5%E5%88%86%E7%B1%BB">一、 单片机学习阶段分类</a></li>
+<li><a href="#%E4%BA%8C-%E6%AF%8F%E4%B8%AA%E9%98%B6%E6%AE%B5%E8%AF%A5%E6%8E%8C%E6%8F%A1%E7%9A%84%E6%8A%80%E6%9C%AF">二、 每个阶段该掌握的技术</a><ul>
+<li><a href="#21-%E5%B0%8F%E8%8F%9C%E9%B8%A1%E9%98%B6%E6%AE%B5">小菜鸡</a></li>
+<li><a href="#22-%E5%85%A5%E9%97%A8%E9%B8%A1%E9%98%B6%E6%AE%B5">入门鸡</a></li>
+<li><a href="#23-%E8%BF%9B%E9%98%B6%E9%B8%A1%E9%98%B6%E6%AE%B5">进阶鸡</a></li>
+<li><a href="#24-%E8%80%81%E5%8F%B8%E6%9C%BA%E9%98%B6%E6%AE%B5">老司机</a></li>
 </ul>
 </li>
-<li><a href="#4-%E6%95%B0%E6%8D%AE%E5%B8%A7%E6%A0%BC%E5%BC%8F">4. 数据帧格式</a></li>
-<li><a href="#5-%E4%BC%98%E7%BC%BA%E7%82%B9">5. 优缺点</a></li>
-<li><a href="#6-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">6. 应用场景</a></li>
-<li><a href="#7-%E6%80%BB%E7%BB%93">7. 总结</a></li>
+<li><a href="#%E4%B8%89-%E6%80%BB%E7%BB%93">三、 总结</a></li>
 </ul>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>SPI（Serial Peripheral Interface）是一种同步串行通信协议，由摩托罗拉在上世纪 80 年代开发。SPI 允许一个主设备通过多个从设备进行高速通信，适用于短距离、快速数据传输的应用。它广泛应用于微控制器与传感器、存储器、显示器等设备之间的通信。</p>
-<h2 id="2-工作原理"><a href="#2-工作原理" class="headerlink" title="2. 工作原理"></a>2. 工作原理</h2><p>SPI 工作在主从模式下，主设备通过生成时钟信号控制数据传输。数据以字节为单位进行传输，主设备通过选择相应的从设备来进行通信。SPI 可以在全双工模式下同时进行发送和接收，因此数据传输速度较快。</p>
-<p>在 SPI 通信中，数据在每个时钟周期内同时在主设备和从设备之间传输。传输的顺序和方向可以通过配置来确定。</p>
-<h2 id="3-SPI-信号线"><a href="#3-SPI-信号线" class="headerlink" title="3. SPI 信号线"></a>3. SPI 信号线</h2><p>SPI 通信通常使用以下四条信号线：</p>
-<h3 id="3-1-MOSI"><a href="#3-1-MOSI" class="headerlink" title="3.1. MOSI"></a>3.1. MOSI</h3><ul>
-<li><strong>MOSI</strong>（Master Out Slave In）：主设备发送数据到从设备的信号线。在数据传输过程中，主设备通过此线将数据发送给从设备。</li>
-</ul>
-<h3 id="3-2-MISO"><a href="#3-2-MISO" class="headerlink" title="3.2. MISO"></a>3.2. MISO</h3><ul>
-<li><strong>MISO</strong>（Master In Slave Out）：从设备发送数据到主设备的信号线。数据从从设备传回主设备通过此线进行传输。</li>
-</ul>
-<h3 id="3-3-SCLK"><a href="#3-3-SCLK" class="headerlink" title="3.3. SCLK"></a>3.3. SCLK</h3><ul>
-<li><strong>SCLK</strong>（Serial Clock）：由主设备生成的时钟信号线。SCLK 的频率决定了数据传输的速率，主设备通过此线同步数据传输。</li>
-</ul>
-<h3 id="3-4-SS-CS"><a href="#3-4-SS-CS" class="headerlink" title="3.4. SS&#x2F;CS"></a>3.4. SS&#x2F;CS</h3><ul>
-<li><strong>SS&#x2F;CS</strong>（Slave Select&#x2F;Chip Select）：用于选择特定的从设备。当主设备要与特定的从设备通信时，会将对应的 SS&#x2F;CS 信号拉低，其他从设备的 SS&#x2F;CS 信号保持高电平。</li>
-</ul>
-<h2 id="4-数据帧格式"><a href="#4-数据帧格式" class="headerlink" title="4. 数据帧格式"></a>4. 数据帧格式</h2><p>SPI 通信中的数据帧通常包含 8 位数据位。数据传输顺序可以是 MSB（最高位）先传输，也可以是 LSB（最低位）先传输，这取决于 SPI 配置。数据帧格式如下：</p>
-<p>SCLK -&gt; | D7 | D6 | D5 | D4 | D3 | D2 | D1 | D0 |</p>
+<h1 id="一-单片机学习阶段分类"><a href="#一-单片机学习阶段分类" class="headerlink" title="一 单片机学习阶段分类"></a>一 单片机学习阶段分类</h1><p>分为三个阶段，分别是小菜鸡、入门鸡、进阶鸡、老司机</p>
+<p>文章整体知识框架主要资料来源——{ 科岩成果 up主 }</p>
+<h1 id="二-每个阶段该掌握的技术"><a href="#二-每个阶段该掌握的技术" class="headerlink" title="二 每个阶段该掌握的技术"></a>二 每个阶段该掌握的技术</h1><h2 id="2-1-小菜鸡阶段"><a href="#2-1-小菜鸡阶段" class="headerlink" title="2.1 小菜鸡阶段"></a>2.1 小菜鸡阶段</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ul>
+<li><p>a.单片机相关概念</p>
 <ul>
-<li><strong>D7 到 D0</strong>：表示 8 位数据。</li>
-<li>数据传输由 SCLK 进行同步控制。</li>
-</ul>
-<h2 id="5-优缺点"><a href="#5-优缺点" class="headerlink" title="5. 优缺点"></a>5. 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li><strong>高速传输</strong>：SPI 支持较高的传输速率，适合需要快速数据交换的应用。</li>
-<li><strong>全双工</strong>：可以在一个时钟周期内同时发送和接收数据，提高了数据传输效率。</li>
-<li><strong>简单易用</strong>：硬件结构简单，易于实现，适合多种应用场景。</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li><strong>占用引脚多</strong>：对于多个从设备，SS&#x2F;CS 线数量随从设备数量增加，可能导致引脚占用过多。</li>
-<li><strong>没有错误检测机制</strong>：SPI 本身不具备错误检测功能，需在应用层实现。</li>
-<li><strong>短距离限制</strong>：适用于短距离通信，通常在几米以内。</li>
-</ul>
-<h2 id="6-应用场景"><a href="#6-应用场景" class="headerlink" title="6. 应用场景"></a>6. 应用场景</h2><p>SPI 广泛应用于多种电子设备中，如：</p>
+<li><p>a1 单片机是什么？</p>
+<p>单片机（Single-Chip Microcomputer）是一种集成电路芯片，是采用超大规模集成电路技术把具有数据处理能力的中央处理器CPU、随机存储器RAM、只读存储器ROM、多种I&#x2F;O口和中断系统、定时器&#x2F;计数器等功能（可能还包括显示驱动电路、脉宽调制电路、模拟多路转换器、A&#x2F;D转换器等电路）集成到一块硅片上构成的一个小而完善的微型计算机系统.</p>
+<p>它不是完成某一个逻辑功能的芯片，而是把一个计算机系统集成到一个芯片上。相当于一个微型的计算机，和计算机相比，单片机只缺少了I&#x2F;O设备。概括的讲：一块芯片就成了一台计算机。它的体积小、质量轻、价格便宜、为学习、应用和开发提供了便利条件。</p>
+</li>
+<li><p>a2 集成电路芯片</p>
+<p>集成电路芯片是包括一硅基板 [1]、至少一电路、一固定封环、一接地环及至少一防护环的电子元件。</p>
+</li>
+<li><p>a3 单片机的分类</p>
+<p>按位数分类，单片机有8位、16位、32位…，主流的有51单片机、STM32等</p>
+</li>
+<li><p>a4 易混淆概念 —— &#x2F;<strong>MPU 与 MCU的概念</strong>&#x2F;</p>
+<p>MPU（Micro Processor Unit）和MCU（Micro Controller Unit）是微处理器与嵌入式系统领域的两个重要概念，但它们在功能、设计和应用方面存在明显的区别。</p>
 <ul>
-<li><strong>传感器</strong>：如温度传感器、压力传感器等。</li>
-<li><strong>存储器</strong>：如闪存、EEPROM 等数据存储设备。</li>
-<li><strong>显示器</strong>：如 OLED 显示屏、液晶显示器等。</li>
-<li><strong>音频设备</strong>：如数字音频处理器。</li>
+<li><p>微处理器-MPU（Micro Processor Unit）</p>
+<p>具有较强的处理和运算能力，用于执行复杂多样的大型程序。1、高主频：通常具备较高的主频，甚至达到几GHz；2、大容量存储器：需要外挂大容量的存储器（如DDR和FLASH）来支持运行复杂操作系统和大型程序；3、多核化：现代MPU普遍支持多核处理。 适用于需要高性能计算和复杂算法处理的系统。</p>
+</li>
+<li><p>微控制器-MCU(Micro Controller Unit)<br>内置了CPU、存储器和各种外设接口的芯片，用于低功耗、资源有限的嵌入式系统。1、简单控制：执行刺激-响应式的过程控制和辅助功能；2、小容量存储器：通常使用片上集成的小存储器；3、单一任务：任务类型单一，执行过程简单。适用于控制相关的任务，如传感器数据采集、人机界面、家电控制等。</p>
+</li>
 </ul>
-<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>SPI（串行外设接口）是一种简单、高速的同步串行通信协议，适合多个设备间的快速数据传输。尽管它在引脚数量和距离方面存在一些限制，但其全双工通信和简单实现的特点使其在嵌入式系统中得到了广泛应用。了解 SPI 的工作原理及其特点，对设计和实现嵌入式系统的通信方案非常重要。</p>
-
+</li>
+</ul>
+</li>
+<li><p>b.电路板  <a target="_blank" rel="noopener" href="https://blog.csdn.net/best_xiaolong/article/details/124223569?ops_request_misc=%257B%2522request%255Fid%2522%253A%252232E56AE6-9AFF-403D-9E93-65EA8F63F826%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=32E56AE6-9AFF-403D-9E93-65EA8F63F826&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-124223569-null-null.nonecase&utm_term=%E7%94%B5%E8%B7%AF%E6%9D%BF&spm=1018.2226.3001.4450">参考资料</a>。</p>
+<p>一个完整的电路板形成过程包括 <strong>原理图 - 封装 - PCB - 电路板</strong>,在得到电路板后，需要元器件选型，以及焊接，这两个步骤说简单不简单，说难也不难，总之还是需要花费时间去做。买器件方面，可能需要在多家店铺才能买到自己需要的所有器件，器件准备的时候，对于新手，需要多准备几份。 如果为了方便，可以使用SMT(嘉立创的SMT一站式服务)，直接使用嘉立创EDA完成PCB设计之后，一键下单PCB，PCB下单时可选需要贴片，等PCB订单审核完，用PCB订单去下SMT，系统会匹配可贴元件，最终选择元件之后即可完成。</p>
+</li>
+</ul>
+<p>PCB、钢网、器件、SMT焊接嘉立创全包，付款后坐等收PCBA</p>
+<p>  <strong>原理图：</strong> 用来描述整个系统电路的原理的,形式可以是手工画的，相关软件画的都行，只要合理，让人能看懂。</p>
+<p>  <strong>封装：</strong> PCB板子上让电子元件焊接的焊盘的大小、焊盘之间的间距，凡是供电子元件焊接的位置都可以称之为电子元件的封装（半导体芯片行业的封装有一点差异）</p>
+<p>  <strong>电路原理图与PCB之间的关系：</strong>  原理图是用来描述整个系统电路的原理的，封装是在PCB上给元件提供安装位置的。但在电路原理图绘制完成之后，如何把电路原理图上的元件和PCB上的元件封装对应上去呢？这个时候就需要用到电路原理图了，将PCB上的各个元件的封装进行有规律的链接在一起，让电路能够正常的工作。（规律就是根据电路原理图链接） 这部分需要用到专门的EDA软件工具，国产的嘉立创在线EDA 或 AD软件。</p>
+<p>  <strong>PCB如何成为电路板：</strong>PCB绘制完成后，需要找到一家代工厂进行电路板制作【打样】</p>
+<p>  <strong>补充</strong>：什么是SMT,SMT：是表面组装技术（表面贴装技术）（Surface Mounted Technology的缩写），是电子组装行业里最流行的一种技术和工艺。将一种将无引脚或短引线表面组装元器件（简称SMC&#x2F;SMD，中文称片状元器件）安装在印制电路板（Printed Circuit Board，PCB)的表面或其它基板的表面上，通过再流焊或浸焊等方法加以焊接组装的电路装连技术。也就是说，有专门的机器来完成元器件安装焊接过程，无需人工。</p>
+<ul>
+<li><p>c.程序</p>
+<p>程序可以理解为 <strong>数据+算法</strong> ，就是为计算机执行任务时，给点一套执行逻辑。所以在计算机设备上跑的任何软件，看得见的、看不见的都可以称之为程序。根据其在计算机设备中的作用或目的，可以大致分为固件、驱动、软件。 </p>
+<ul>
+<li><p><strong>固件（firmware）</strong> 是赋予设备硬件生命的程序</p>
+<p>固件（Firmware）就是写入 ROM （只读存储器）中的程序，固件担任着一个系统最基础最底层工作，直接控制硬件，比如计算机上电后第一个启动的程序 BIOS ，它可以与硬件交互，并检查它是否有任何错误。</p>
+<p>BIOS 调用另一个称为引导加载程序的程序，该程序执行唤醒在硬盘驱动器内休眠的操作系统并将其放入随机存取存储器 (RAM) 的工作。</p>
+<p>在许多设备上看到固件，包括计算机、手机、遥控器、游戏机、智能手表、USB 驱动器和各种嵌入式系统。即使是电视遥控器也有一个预装的固件，可以实现你按下按钮的时候电视换台操作。</p>
+</li>
+<li><p><strong>驱动</strong> 是操作系统和硬件组件之间的中间人</p>
+<p>驱动程序即添加到操作系统中的一小块代码，其中包含有关硬件设备的信息。当计算机程序请求与某个硬件设备交互时，设备驱动程序充当硬件设备与使用它的程序之间指令的转换器。</p>
+<p>每个驱动程序都旨在为特定或一组设备工作。在计算机上，驱动程序使用各种总线接口来联系设备。此外，驱动程序一般不直接与用户交互，所以很多用户完全不知道它们的存在。</p>
+<p>驱动程序的开发需要非常小心，因为它直接与硬件打交道，同时也与操作系统打交道。如果设备驱动程序出现问题，可能会导致系统崩溃，这就是为什么需要专业人员或团队来为设备编写驱动程序的原因。</p>
+<p>但是为什么不把 Firmware 做的很完美，做的不需要驱动支持呢？因为有不同的操作系统，而这些操作系统对于操作硬件的方式完全不同。所以不同操作系统的驱动是不能兼容的，原因就是驱动是为操作系统服务的。</p>
+</li>
+<li><p><strong>软件</strong> 可以狭义理解为直接提供用户间接操作硬件设备（如计算机）</p>
+<p>与硬件不同，软件是运行在电脑里，看不见摸不着。</p>
+<p>操作系统也是一个软件，并且为安装在操作系统上的其他软件提供了工作空间。前面提到的设备驱动程序其实也是一种软件，不过它有个更细分的种类，称为系统软件。</p>
+<p>如果用户编写了一个软件，想要操作硬件（比如光驱、U盘等），他必须通过操作系统提供的接口来实现，而无法直接与硬件交互。</p>
+</li>
+</ul>
+<p>[<strong>注</strong>]：上述为个人的理解，内容只涉及一些基本概念，不涉及具体的技术学习！！！</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/450306524">参考资料来源</a></p>
+</li>
+<li><p>d.编译、下载、运行</p>
+<ul>
+<li><p>程序编译过程（以 C语言为例 ）</p>
+<ul>
+<li><p>预处理（Preprocessing）</p>
+<p>预处理器会执行以下操作：</p>
+<p>a.宏替换：预处理器会用定义的宏来替换代码中的宏调用。例如，#define MAX 100 会将代码中出现的MAX替换为100。<br>b.头文件包含：预处理器会将通过#include指令包含的头文件的内容插入到源文件中。例如，#include &lt;stdio.h&gt;会将stdio.h头文件的内容插入到代码中。<br>c.条件编译：根据条件编译指令（如#ifdef、#ifndef等），预处理器可以选择性地包含或排除代码的某些部分。<br>d.删除注释：预处理器会删除代码中的注释，使其不会影响后续的编译过程。</p>
+<p>最后文件以 .i 为后缀 </p>
+</li>
+<li><p>编译（Compilation）</p>
+<p>编译器（如gcc）会将预处理后的C代码文件（.i文件）转换成汇编代码文件。编译的过程如下：</p>
+<p>a.语法分析：编译器检查代码的语法是否正确。如果语法错误，编译过程将停止，并且会报告错误信息。</p>
+<p>b.语义分析：编译器检查代码的逻辑是否有意义，例如类型检查、变量的作用域检查等。</p>
+<p>c.优化：编译器可能会对代码进行一些优化，例如循环优化、常量折叠等，以提高生成代码的执行效率。</p>
+<p>d.生成汇编代码：编译器根据分析结果将C代码转换为汇编代码，这些汇编代码是针对特定处理器架构的指令集编写的。</p>
+<p>最后文件以 .s 为后缀 </p>
+</li>
+<li><p>汇编（Assembly）</p>
+</li>
+</ul>
+<p>  汇编器（如as）会将汇编代码文件（.s文件）转换成目标机器的机器码（即二进制指令），汇编步骤如下：</p>
+<p>  a.翻译汇编代码：将汇编代码中对应的指令翻译成二进制机器码，这些机器码可以被计算机直接执行。</p>
+<p>  b.地址分配：分配变量、函数等在内存中的地址，处理汇编代码中的符号引用。</p>
+<p>  最后文件以 .o 为后缀 </p>
+<ul>
+<li><p>链接（Linking）</p>
+<p>链接器（如ld）会将一个或多个目标文件（.o文件）和库文件（如标准库）合并，生成最终的可执行文件。该过程包含以下内容:</p>
+<p>a.符号解析：解析所有目标文件和库文件中的符号引用，确定它们的实际地址。如果某个符号无法解析，链接器会报告错误。</p>
+<p>b.合并代码段：将各个目标文件中属于同一段的代码（如代码段、数据段等）合并到一起。</p>
+<p>c.处理外部库：将程序中使用的外部库（如C标准库libc）的代码和程序本身的代码链接在一起。</p>
+<p>链接的输出是最终的可执行文件，通常在Unix&#x2F;Linux系统上没有后缀，在Windows系统上是.exe文件。</p>
+</li>
+</ul>
+</li>
+<li><p>下载</p>
+<p>  当程序编译成功后，下载到板子上的方式主要有两种，一是通过串口，通过提供的专用下载程序到板子上软件下载到程序上；二是通过ST-Link下载器下载，该方法可以进行调试（<strong>推荐使用此类方法</strong>）。</p>
+</li>
+<li><p>运行<br>  下好程序后，有些板子会直接运行程序，有些需要重新上电后才会运行。</p>
+<p>  以下讲一下板子运行程序的步骤：</p>
+<p>  （1）</p>
+<p>  （2）</p>
+</li>
+</ul>
+</li>
+<li><p>e.点灯</p>
+<p>这个过程实际原理很简单，就是在单片机上写程序，为对应接口提供高电平，使得二极管导通，这是最简单的一种点灯形式，点灯形式有很多，如呼吸灯，这涉及到使用脉冲宽度调制，即 PWM信号，通过逐渐控制灯两端的电压大小实现。</p>
+</li>
+<li><p>f.嵌入式工程师</p>
+</li>
+</ul>
+<h3 id="C语言基础"><a href="#C语言基础" class="headerlink" title="C语言基础"></a>C语言基础</h3><ul>
+<li>C语言对于嵌入式单片机开发来说是必不可少的，这是必修内功之一，基础中的基础。</li>
+</ul>
+<h3 id="单片机基础"><a href="#单片机基础" class="headerlink" title="单片机基础"></a>单片机基础</h3><ul>
+<li><p>a.轮询、定时器、中断</p>
+<ul>
+<li><p>轮询</p>
+</li>
+<li><p>定时器</p>
+</li>
+<li><p>中断</p>
+</li>
+<li><p>看门狗</p>
+</li>
+</ul>
+</li>
+<li><p>b.外设通信</p>
+<p>常见的总线通信协议的基本概念、协议内容、使用方法要会，如I2C、SPI、串口、CAN、蓝牙等通信协议。</p>
+</li>
+<li><p>c.调试</p>
+</li>
+</ul>
+<h2 id="2-2-入门鸡阶段"><a href="#2-2-入门鸡阶段" class="headerlink" title="2.2 入门鸡阶段"></a>2.2 入门鸡阶段</h2><h3 id="单片机高级"><a href="#单片机高级" class="headerlink" title="单片机高级"></a>单片机高级</h3><ul>
+<li><p>a.代码规范</p>
+</li>
+<li><p>b.基本数据结构</p>
+</li>
+<li><p>c.基础算法</p>
+</li>
+<li><p>d.状态机原理&#x2F;技巧</p>
+</li>
+<li><p>e.RTOS(任务、锁、信号量、消息队列)</p>
+</li>
+<li><p>f.掌握网络socket编程(tcp&#x2F;udp&#x2F;mqtt&#x2F;coap)</p>
+</li>
+<li><p>g.掌握某无线网络通信模块(串口透传&#x2F;AT指令&#x2F;WIfi&#x2F;BLE&#x2F;ZigBee&#x2F;LoRa…)</p>
+</li>
+<li><p>h.低功耗(睡眠、停机、待机、测试指标)</p>
+</li>
+</ul>
+<h3 id="电路板-看懂简单原理图"><a href="#电路板-看懂简单原理图" class="headerlink" title="电路板(看懂简单原理图)"></a>电路板(看懂简单原理图)</h3><h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><h2 id="2-3-进阶鸡阶段"><a href="#2-3-进阶鸡阶段" class="headerlink" title="2.3 进阶鸡阶段"></a>2.3 进阶鸡阶段</h2><h3 id="通用内功"><a href="#通用内功" class="headerlink" title="通用内功"></a>通用内功</h3><ul>
+<li><p>a.RTOS源码学习</p>
+</li>
+<li><p>b.网络源码学习</p>
+</li>
+<li><p>c.模块二次开发</p>
+</li>
+<li><p>d.性能优化</p>
+</li>
+<li><p>e.代码可移植</p>
+</li>
+<li><p>f.编译&#x2F;链接脚本</p>
+</li>
+<li><p>g.处理脚本(Python&#x2F;lua&#x2F;shell)</p>
+</li>
+<li><p>h.芯片手册</p>
+</li>
+<li><p>i.Arm指令集</p>
+</li>
+<li><p>j.电子学</p>
+</li>
+</ul>
+<p>电子电路、数电&#x2F;模电理论知识、各类电子元件的原理</p>
+<h3 id="独门绝技"><a href="#独门绝技" class="headerlink" title="独门绝技"></a>独门绝技</h3><p>根据自己从事领域的方向，主修一门绝技</p>
+<ul>
+<li><p>a.通用协议栈</p>
+</li>
+<li><p>b.算法</p>
+</li>
+<li><p>c.安全</p>
+</li>
+<li><p>d.FPGA设计</p>
+</li>
+<li><p>e.CPU设计</p>
+</li>
+</ul>
+<h2 id="2-4-老司机阶段"><a href="#2-4-老司机阶段" class="headerlink" title="2.4 老司机阶段"></a>2.4 老司机阶段</h2><h3 id="横向技术扩展"><a href="#横向技术扩展" class="headerlink" title="横向技术扩展"></a>横向技术扩展</h3><ul>
+<li><p>a.通用协议栈</p>
+</li>
+<li><p>b.算法</p>
+</li>
+<li><p>c.安全</p>
+</li>
+<li><p>d.FPGA设计</p>
+</li>
+<li><p>e.CPU设计</p>
+</li>
+</ul>
+<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3><h3 id="行业认知"><a href="#行业认知" class="headerlink" title="行业认知"></a>行业认知</h3><h3 id="公司"><a href="#公司" class="headerlink" title="公司"></a>公司</h3><h1 id="三-总结"><a href="#三-总结" class="headerlink" title="三 总结"></a>三 总结</h1>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 790529148@qq.com </span>
     </div>
